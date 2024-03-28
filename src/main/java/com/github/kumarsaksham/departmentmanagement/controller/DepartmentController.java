@@ -2,6 +2,7 @@ package com.github.kumarsaksham.departmentmanagement.controller;
 
 import com.github.kumarsaksham.departmentmanagement.entity.Department;
 import com.github.kumarsaksham.departmentmanagement.service.DepartmentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @PostMapping("/departments")
-    public ResponseEntity<Department> saveDepartment(@RequestBody Department department) {
+    public ResponseEntity<Department> saveDepartment(@Valid @RequestBody Department department) {
 //        DepartmentService departmentService = new DepartmentServiceImpl();
         Department savedDepartment = departmentService.saveDepartment(department);
         return ResponseEntity.ok().body(savedDepartment);
