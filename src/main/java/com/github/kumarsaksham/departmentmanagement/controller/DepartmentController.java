@@ -1,6 +1,7 @@
 package com.github.kumarsaksham.departmentmanagement.controller;
 
 import com.github.kumarsaksham.departmentmanagement.entity.Department;
+import com.github.kumarsaksham.departmentmanagement.exception.DepartmentNotFoundException;
 import com.github.kumarsaksham.departmentmanagement.service.DepartmentService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -34,7 +35,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public ResponseEntity<Department> getDepartmentById(@PathVariable("id") Long departmentId) {
+    public ResponseEntity<Department> getDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
         LOGGER.info("Invoking getDepartmentById api for fetching the department detail by Id");
         Department fetchedDepartment = departmentService.getDepartmentById(departmentId);
         return ResponseEntity.ok().body(fetchedDepartment);
