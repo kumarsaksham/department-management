@@ -1,25 +1,97 @@
+#Common configs
 server:
   port: 8080
+
 spring:
+  profiles:
+    active: local_msql
+
+welcome:
+  message: "Welcome to Department Management Spring boot Application"
+
+---
+#Local h2 database configs
+spring:
+  config:
+    activate:
+      on-profile: local_h2
+  application:
+    name: Department Management
+    datasource:
+      driverClassName: org.h2.Driver
+      password: password
+      url: jdbc:h2:mem:department_management_db
+      username: sa
+    h2:
+      console:
+        enabled: true
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+
+---
+#Local mysql database configs
+spring:
+  config:
+    activate:
+      on-profile: local_mysql
   application:
     name: Department Management
   datasource:
-    driverClassName: org.h2.Driver
     password: password
-    url: jdbc:h2:mem:department_management_db
-    username: sa
-  h2:
-    console:
-      enabled: true
+    url: jdbc:mysql://localhost:3306/department_management_db
+    username: root
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-#  datasource:
-#    password: password
-#    url: jdbc:mysql://localhost:3306/department_management_db
-#    username: root
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#      show-sql: true
-welcome:
-  message: "Welcome to Department Management Spring boot Application"
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+---
+#dev database configs
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+    name: Department Management
+  datasource:
+    password: password
+    url: jdbc:mysql://localhost:3306/department_management_db
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+---
+#qa database configs
+spring:
+  config:
+    activate:
+      on-profile: qa
+  application:
+    name: Department Management
+  datasource:
+    password: password
+    url: jdbc:mysql://localhost:3306/department_management_db
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+---
+#prod database configs
+spring:
+  config:
+    activate:
+      on-profile: prod
+  application:
+    name: Department Management
+  datasource:
+    password: password
+    url: jdbc:mysql://localhost:3306/department_management_db
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
