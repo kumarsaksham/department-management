@@ -1,0 +1,14 @@
+#configs for local env: h2 database
+spring:
+  application:
+    name: Department Management
+    datasource:
+      driverClassName: org.h2.Driver
+      password: password
+      url: jdbc:h2:mem:department_management_db
+      username: sa
+    h2:
+      console:
+        enabled: true
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
