@@ -12,3 +12,10 @@ spring:
         enabled: true
     jpa:
       database-platform: org.hibernate.dialect.H2Dialect
+
+#Spring Boot actuator config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
